@@ -2,7 +2,6 @@
 *.log
 *.filters
 *.user
-*.dll
 *.exp
 *.ilk
 *.lib
