@@ -1,0 +1,15 @@
+/Docs
+*.log
+*.filters
+*.user
+*.dll
+*.exp
+*.ilk
+*.lib
+*.pdb
+*.obj
+*.sdf
+*.opensdf
+*.suo
+*.manifest
+*.cd
