@@ -152,9 +152,11 @@ int ps_log_signoff_ah(EPM_action_message_t msg)
 			itk(AOM_ask_value_string(tSignOff, "fnd0Status", decision.pptr()));
 
 			// Only proceed if action equals action registered on SignOff
-			if (msg.action == EPM_approve_action && match_string("Approved", decision.ptr()) ||
-				msg.action == EPM_reject_action && match_string("Rejected", decision.ptr())) {
-				
+			if ((msg.action == EPM_approve_action && match_string("Approved", decision.ptr())) ||
+				(msg.action == EPM_reject_action && match_string("Rejected", decision.ptr()))) {
+
+				begin_trans(x);
+
 				// Loop over valid targets
 				for (int j = 0; j < vTargets.size(); j++) {
 					tag_t				tTarget = vTargets[j];
@@ -163,17 +165,14 @@ int ps_log_signoff_ah(EPM_action_message_t msg)
 					// Check so that SignOff info has not already been added
 					itk(POM_tag_to_uid(tSignOff, signOffUid.pptr()));
 					if (!form_exist(tTarget, tRelationType, vLogFormPropMap[0], signOffUid.ptr())) {
-						begin_trans(x);
-
 						if (tForm == 0)
 							tForm = create_form(tSignOff, signOffUid.ptr(), tFormType, vLogFormPropMap, reviewTaskName.ptr());
 						itk(GRM_create_relation(tTarget, tForm, tRelationType, 0, &tRelation));
 						itk(GRM_save_relation(tRelation));
-						
-						commit_trans(x);
 					}
 				}
 
+				commit_trans(x);
 			}
 		}
 	}
