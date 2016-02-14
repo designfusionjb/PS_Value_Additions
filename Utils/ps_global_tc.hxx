@@ -31,6 +31,7 @@
 #include <fclasses/tc_string.h>
 #include <epm/epm.h>
 #include <epm/epm_task_template_itk.h>
+#include <epm/signoff.h>
 #include <property/nr.h>
 #include <pom/enq/enq.h>
 #include <tccore/grm.h>
@@ -67,6 +68,7 @@
 #include <fclasses/tc_string.h>
 #include <epm/epm.h>
 #include <epm/epm_task_template_itk.h>
+#include <epm/signoff.h>
 #include <property/nr.h>
 #include <pom/enq/enq.h>
 #include <tccore/grm.h>

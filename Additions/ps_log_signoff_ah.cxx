@@ -152,7 +152,7 @@ int ps_log_signoff_ah(EPM_action_message_t msg)
 			itk(AOM_ask_value_string(tSignOff, "fnd0Status", decision.pptr()));
 
 			// Only proceed if action equals action registered on SignOff
-			if ((msg.action == EPM_approve_action && match_string("Approved", decision.ptr())) ||
+			if ((msg.action == EPM_approve_action && (match_string("Approved", decision.ptr()) || match_string("Acknowledged", decision.ptr()))) ||
 				(msg.action == EPM_reject_action && match_string("Rejected", decision.ptr()))) {
 
 				begin_trans(x);
